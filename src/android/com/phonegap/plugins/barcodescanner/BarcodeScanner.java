@@ -16,8 +16,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 
-import com.google.zxing.client.android.Intents;
-
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
@@ -46,6 +44,7 @@ public class BarcodeScanner extends CordovaPlugin {
     private static final String EMAIL_TYPE = "EMAIL_TYPE";
     private static final String PHONE_TYPE = "PHONE_TYPE";
     private static final String SMS_TYPE = "SMS_TYPE";
+    private static final String SCAN_FORMATS = "SCAN_FORMATS";
 
     private static final String LOG_TAG = "BarcodeScanner";
 
@@ -118,7 +117,7 @@ public class BarcodeScanner extends CordovaPlugin {
         Intent intentScan = new Intent(SCAN_INTENT);
         intentScan.addCategory(Intent.CATEGORY_DEFAULT);
         if (formats != null) {
-            intentScan.putExtra(Intents.Scan.FORMATS, formats);
+            intentScan.putExtra(SCAN_FORMATS, formats);
         }
         // avoid calling other phonegap apps
         intentScan.setPackage(this.cordova.getActivity().getApplicationContext().getPackageName());
