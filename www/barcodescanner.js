@@ -70,7 +70,7 @@
          *    }
          * @param {Function} errorCallback
          */
-        BarcodeScanner.prototype.scan = function (successCallback, errorCallback) {
+        BarcodeScanner.prototype.scan = function (successCallback, errorCallback, formats) {
             if (errorCallback == null) {
                 errorCallback = function () {
                 };
@@ -86,7 +86,12 @@
                 return;
             }
 
-            exec(successCallback, errorCallback, 'BarcodeScanner', 'scan', []);
+            var data = [];
+            if (formats) {
+                data = [{ formats:formats }];
+            }
+
+            exec(successCallback, errorCallback, 'BarcodeScanner', 'scan', data);
         };
 
         //-------------------------------------------------------------------
