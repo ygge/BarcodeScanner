@@ -36,7 +36,7 @@ public class BarcodeScanner extends CordovaPlugin {
     private static final String DATA = "data";
     private static final String TYPE = "type";
     private static final String FORMATS = "formats";
-    private static final String SCAN_INTENT = "com.phonegap.plugins.barcodescanner.SCAN";
+    private static final String SCAN_INTENT = "com.google.zxing.client.android.SCAN";
     private static final String ENCODE_DATA = "ENCODE_DATA";
     private static final String ENCODE_TYPE = "ENCODE_TYPE";
     private static final String ENCODE_INTENT = "com.phonegap.plugins.barcodescanner.ENCODE";
@@ -101,7 +101,7 @@ public class BarcodeScanner extends CordovaPlugin {
             JSONObject obj = args.optJSONObject(0);
             String formats = null;
             if (obj != null) {
-                formats = obj.optString(FORMAT);
+                formats = obj.optString(FORMATS);
             }
             scan(formats);
         } else {
@@ -116,6 +116,7 @@ public class BarcodeScanner extends CordovaPlugin {
     public void scan(String formats) {
         Intent intentScan = new Intent(SCAN_INTENT);
         intentScan.addCategory(Intent.CATEGORY_DEFAULT);
+        Log.w("BarcodeScanner", "Got formats: " + formats);
         if (formats != null) {
             intentScan.putExtra(SCAN_FORMATS, formats);
         }

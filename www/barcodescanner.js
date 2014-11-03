@@ -69,6 +69,7 @@
          *        cancelled : true/false, // Was canceled.
          *    }
          * @param {Function} errorCallback
+         * @param formats Optional comma separated string of formats that should be checked
          */
         BarcodeScanner.prototype.scan = function (successCallback, errorCallback, formats) {
             if (errorCallback == null) {
